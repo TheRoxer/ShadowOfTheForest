@@ -6,16 +6,7 @@ public class deletewhentouched : MonoBehaviour
 {
     public GameObject p3;
 
-    void OnCollisionEnter(Collision col)
-    {
-        {
-            if(col.gameObject.name == "Square")
-            {
-                Debug.Log("Collision detected");
-                p3.GetComponent<Renderer>().enabled = false;
-            }
-        }
-    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +17,9 @@ public class deletewhentouched : MonoBehaviour
     void Update()
     {
         
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
     }
 }
