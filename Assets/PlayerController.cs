@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+
+    bool canMove = true;
     
     void Start()
     {
@@ -26,6 +28,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate() 
     {
+
+        if(canMove) 
+        {
 
         if (movementInput != Vector2.zero)
         {
@@ -53,6 +58,8 @@ public class PlayerController : MonoBehaviour
         } else if (movementInput.x > 0)
         {
             spriteRenderer.flipX = false;
+        }
+
         }
 
     }
@@ -89,4 +96,34 @@ public class PlayerController : MonoBehaviour
     {
         movementInput = movementValue.Get<Vector2>();
     }
+
+    void OnFire() {
+        animator.SetTrigger("swordAttack");
+    }
+
+    // public void SwordAttack() {
+    //     LockMovement();
+
+    //     if(spriteRenderer.flipX == true){
+    //         swordAttack.AttackLeft();
+    //     } else { 
+    //         swordAttack.AttackRight();
+    //     }
+    // }
+
+    // public void EndSwordAttack() {
+    //     UnlockMovement();
+    //     swordAttack.StopAttack();
+    // }
+
+    public void LockMovement() {
+        print("bob");
+    }
+
+    public void Unlock() {
+        canMove = true;
+        print("bob2");
+    }
+
+
 }
