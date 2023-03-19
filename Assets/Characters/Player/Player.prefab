@@ -34,9 +34,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5008268469089715376}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5568569299143519277
 SpriteRenderer:
@@ -241,8 +242,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
-<<<<<<< Updated upstream
-=======
 --- !u!114 &4134159872134359552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +254,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3ced7f303ae9c4eba0f77c346cee2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
+  healthBar: {fileID: 0}
 --- !u!1 &7267744216801637330
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +267,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5008268469089715376}
   - component: {fileID: 7664376488931098415}
-  - component: {fileID: 2495343223832195016}
   m_Layer: 0
   m_Name: SwordHitbox
   m_TagString: Untagged
@@ -333,18 +334,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.22, y: 0.3}
   m_EdgeRadius: 0
---- !u!114 &2495343223832195016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7267744216801637330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73c946941946cea41b72e30a22ee97e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swordCollider: {fileID: 0}
-  damage: 3
->>>>>>> Stashed changes
