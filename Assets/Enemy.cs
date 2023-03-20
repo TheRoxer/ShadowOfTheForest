@@ -5,14 +5,16 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     Animator animator;
-    public int maxHealth;
     [SerializeField] float speed = 5f;
     Rigidbody2D rb;
     Transform target;
     Vector2 moveDirection;
+    List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    PlayerController player;
 
     public ContactFilter2D movementFilter;
-    List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    public int maxHealth;
+    public float damage = 3;
 
     public float Health {
         set {
@@ -32,7 +34,8 @@ public class Enemy : MonoBehaviour
     private void Start() {
         animator = GetComponent<Animator>(); 
         health = maxHealth;
-        target = GameObject.Find("Player").transform;
+        
+        target = GameObject.Find("Player").transform; 
     }
 
     public void Defeated(){ 
@@ -75,13 +78,25 @@ public class Enemy : MonoBehaviour
             }
 
             rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * speed;
+            animator.SetBool("isMoving", true);
+
+            if(moveDirection.x > 0) {
+                transform.localScale = new Vector3(1, 1, 1);
+            } else if(moveDirection.x < 0) {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
 
             
         }
     }
 
-    public void TakeDamage (float damageAmount) 
-    {
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.tag == "Player") {
+            PlayerController player = other.GetComponent<PlayerController>();
 
-    }
+            if(player != null) {
+                player.TakeDamage(damage);
+            }
+        }
+    } 
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerController : MonoBehaviour
@@ -11,21 +12,39 @@ public class PlayerController : MonoBehaviour
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;
+    public HealthBar healthBar;
 
     Vector2 movementInput;
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
     Animator animator;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
-    
 
     bool canMove = true;
+    public bool isAlive = true;
+    
+    public float Health {
+    set {
+        health = value;
+
+        if(health <= 0) {
+            Defeated();
+        }
+    }
+        get {
+            return health;
+        }
+    }
+
+    public float health = 25;
+    public float maxHealth = 25;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        healthBar.SetMaxHealth((int)maxHealth);
     }
 
     void FixedUpdate() 
@@ -91,6 +110,8 @@ public class PlayerController : MonoBehaviour
 
     }  
 
+    // Movement mehanics //
+
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
@@ -126,6 +147,26 @@ public class PlayerController : MonoBehaviour
             swordAttack.AttackRight();
         }
     }
+
+    // Death mehanics //
+
+    public void Defeated(){ 
+        animator.SetTrigger("PlayerDefeated");
+        print("Player Defeated");
+        isAlive = false;
+    }
+
+    public void RemovePlayer() {
+        Destroy(gameObject);
+        SceneManager.LoadScene(2);
+
+    }
+
+    public void TakeDamage(float damage) {
+        Health -= damage;
+        healthBar.setHealth((int)health);
+    }
+
 }
 
 
