@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 951892396077541649}
   - component: {fileID: 8816899705509999565}
   - component: {fileID: 4408370262323688103}
+  - component: {fileID: -7975753686491317460}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -299,3 +300,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7975753686491317460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776742792612787742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cdc8d7556dad67458f91df2c6f0375e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 6019616331136756822, guid: f504345335d106a4baa80641f75f2a0e, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: 8f7b333b8e037844989e9ff51c155845, type: 2}
+  - {fileID: 11400000, guid: 626bdda59aada294e8e068c93ac22568, type: 2}
+  - {fileID: 11400000, guid: 6f022da3de6e88546baa094a2a5fe65f, type: 2}
+  dropForce: 10

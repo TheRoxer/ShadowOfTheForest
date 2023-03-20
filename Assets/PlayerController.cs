@@ -22,6 +22,14 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private AudioSource swingEffect;
     [SerializeField] private AudioSource deathEffect;
+    [SerializeField] private AudioSource dashEffect;
+    [SerializeField] private TrailRenderer trailRenderer;
+
+    // private bool canDash = true;
+    // private bool isDashing = false;  
+    // private float dashingPower = 4f;
+    // private float dashingTime = 0.2f;
+    // private float dashingCooldown = 1f;
 
 
     bool canMove = true;
@@ -51,7 +59,11 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() 
-    {
+    {   
+
+        // if(isDashing) {
+        //     return;
+        // }
 
         if(canMove) {
             if (movementInput != Vector2.zero)
@@ -91,12 +103,10 @@ public class PlayerController : MonoBehaviour
 
         if(direction != Vector2.zero) {
             int count = rb.Cast(
-
                 direction,
                 movementFilter,
                 castCollisions,
                 moveSpeed * Time.fixedDeltaTime + collisionOffset
-
             );
 
             if (count == 0)
@@ -109,9 +119,7 @@ public class PlayerController : MonoBehaviour
         } else {
             return false;
         }
-
-
-    }  
+    } 
 
     // Movement mehanics //
 
@@ -124,6 +132,13 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger("swordAttack");
     }
+
+    // void OnDash() 
+    // {
+    //     if(canDash) {
+    //         StartCoroutine(Dash());
+    //     }
+    // }
 
     public void lockMovement() 
     {
@@ -170,6 +185,30 @@ public class PlayerController : MonoBehaviour
         Health -= damage;
         healthBar.setHealth((int)health);
     }
+
+    // private IEnumerator Dash() {
+        
+    //     canDash = false;
+    //     isDashing = true;
+
+    //     if(spriteRenderer.flipX == true){
+    //         // rb.AddForce(Vector2.left * dashingPower, ForceMode2D.Impulse);
+    //         rb.velocity = new Vector2(transform.localScale.x * dashingPower * -1, 0f);
+    //     } else {
+    //         // rb.AddForce(Vector2.right * dashingPower, ForceMode2D.Impulse);
+    //         rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+    //     }
+
+    //     // rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+
+    //     trailRenderer.emitting = true;
+    //     yield return new WaitForSeconds(dashingTime);
+    //     trailRenderer.emitting = false;
+    //     isDashing = false;
+    //     yield return new WaitForSeconds(dashingCooldown);
+    //     canDash = true;
+
+    // }
 
 }
 

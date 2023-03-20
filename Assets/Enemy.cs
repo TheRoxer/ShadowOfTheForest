@@ -41,10 +41,13 @@ public class Enemy : MonoBehaviour
     }
 
     public void Defeated(){ 
+
         animator.SetTrigger("Defeated");
+        
     }
 
     public void RemoveEnemy() {
+        GetComponent<LootBag>().InstantiateLoot(transform.position);
         Destroy(gameObject);
     }
 
