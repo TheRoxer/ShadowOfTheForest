@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     Animator animator;
-    [SerializeField] float speed = 5f;
     Rigidbody2D rb;
     Transform target;
     Vector2 moveDirection;
@@ -15,6 +14,9 @@ public class Enemy : MonoBehaviour
     public ContactFilter2D movementFilter;
     public int maxHealth;
     public float damage = 3;
+
+    [SerializeField] float speed = 5f;
+    [SerializeField] private AudioSource slimeEffect;
 
     public float Health {
         set {
@@ -69,7 +71,7 @@ public class Enemy : MonoBehaviour
                 moveDirection,
                 movementFilter,
                 castCollisions,
-                speed * Time.fixedDeltaTime + 0.1f
+                speed * Time.fixedDeltaTime
 
             );
 
@@ -96,6 +98,7 @@ public class Enemy : MonoBehaviour
 
             if(player != null) {
                 player.TakeDamage(damage);
+                slimeEffect.Play();
             }
         }
     } 

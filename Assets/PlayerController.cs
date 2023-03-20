@@ -20,8 +20,11 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
+    [SerializeField] private AudioSource swingEffect;
+    [SerializeField] private AudioSource deathEffect;
+
+
     bool canMove = true;
-    public bool isAlive = true;
     
     public float Health {
     set {
@@ -146,14 +149,15 @@ public class PlayerController : MonoBehaviour
         } else {
             swordAttack.AttackRight();
         }
+        swingEffect.Play();
+
     }
 
     // Death mehanics //
 
     public void Defeated(){ 
         animator.SetTrigger("PlayerDefeated");
-        print("Player Defeated");
-        isAlive = false;
+        deathEffect.Play();
     }
 
     public void RemovePlayer() {
